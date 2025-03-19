@@ -1,0 +1,38 @@
+name: Python application CI
+
+on:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+permissions:
+    contents: read
+
+jobs:
+    bulid:
+
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+        - name: Set up Python 3.10
+          uses: actions.setup-python@v3
+          with:
+            python-version: "3.10"
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install flake8 pytest
+            if [ -f requirements.txt ]; then pip install -r
+            requirements.txt; fi
+        - name: Lint with flake8
+          run: |
+            # 파이썬 문법 에러가 있거나 정의되지 않은 이름이 있는 경우 빌드를 멈춥니다.
+              flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            # 'exit-zero'는 모든 에러를 경고로 처리합니다.
+            # Github 에디터는 한 줄에 127자까지 보입니다.
+              flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        - name: Test with pytest
+          run: |
+            python -m pytest
