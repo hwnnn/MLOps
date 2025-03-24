@@ -23,7 +23,8 @@ spec:
       - name: fastapiapp
         image: devopsimager.azurecr.io/fastapiapp:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8000
+          name: fastapi-port
         resources:
           requests:
             cpu: 250m
