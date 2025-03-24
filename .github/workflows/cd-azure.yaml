@@ -53,6 +53,15 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
+        - name: Check current directory
+          run: pwd
+        
+        - name: List files in current directory
+          run: ls -a
+
+        - name: 'Checkout Github Action'
+          uses: actions/checkout@main
+        
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
