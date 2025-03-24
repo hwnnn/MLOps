@@ -48,10 +48,16 @@ jobs:
     #         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
     #         name: aci-fastapiapp
     #         location: 'korea central'
+
     deploy:
         needs: build
         runs-on: ubuntu-latest
         steps:
+        - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
         - name: Set AKS context
           id: set-context
           uses: azure/aks-set-context@v3
