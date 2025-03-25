@@ -25,7 +25,7 @@ RUN python3 -m venv /mlops/venv \
 ENV PATH="/mlops/venv/bin:$PATH"
 
 # 애플리케이션이 사용하는 포트를 노출한다.
-EXPOSE 8000
+EXPOSE 80
 
 # main.py를 실행한다.
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
