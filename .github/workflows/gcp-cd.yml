@@ -48,7 +48,7 @@ jobs:
     # 빌드된 Docker Image를 Google Container Registry로 Push하는 단계
     - name: Publish
       run: |-
-        docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+        docker push "asia-northeast3-docker.pkg.dev/$PROJECT_ID/docker-repo/$IMAGE:$GITHUB_SHA"
     
     # 빌드된 Docker Image를 GCP로 배포하는 단계
     - name: 'Deploy to Cloud Run'
