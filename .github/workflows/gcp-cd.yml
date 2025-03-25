@@ -53,7 +53,7 @@ jobs:
     # 빌드된 Docker Image를 GCP로 배포하는 단계
     - name: 'Deploy to Cloud Run'
       run: |
-        gcloud run deploy fastapp--service --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA \
+        gcloud run deploy fastapp-service --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA \
         --platform=managed \
         --region=asia-northeast3 \
         --allow-unauthenticated
